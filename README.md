@@ -1,4 +1,3 @@
-Certainly! Below is a sample GitHub README for your chat room project. Feel free to customize it according to your project structure, details, and preferences.
 
 
 # Chat Room
