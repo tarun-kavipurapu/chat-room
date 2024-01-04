@@ -35,6 +35,11 @@ addUser(userId:string,roomId:string,conn:WebSocket){
     })
     
 }
+sendMessageToClient(userId,roomId,messageObject){
+    const user = this.getUser(userId,roomId);
+    user.conn.send(JSON.stringify(messageObject))
+
+}
 removeUser(userId:string,roomId:string){
 //first get the users array with the user id  and the room id
 //check if the user is present 

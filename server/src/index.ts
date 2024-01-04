@@ -32,23 +32,48 @@ wss.on("connection", async (ws, req) => {
   ws.on("message", (message) => {
     console.log("received: %s", message);
     const data = JSON.parse(message.toString());
-    console.log(data);
-    const { userId, roomId } = data.payload;
-    manageUser.addUser(userId, roomId, ws);
-    if(data.event === "setUserRoom"){
-      
-    }
+    // console.log(data);
 
-
-    if (data.event === "sendMessage") {
-      const messageObject = {
-        message: data.payload.message,
-        time: data.payload.timeStamp,
-        userId: data.payload.userId,
-        roomId: data.payload.roomId,
+    if (data.event === "setUserRoom") {
+      const { userId, roomId } = data.payload;
+      manageUser.addUser(userId, roomId, ws);
+      const responseObject = {
+        event: "userRoomResponse",
+        payload: {
+          success: true,
+          message: "User Successfully added to the room",
+        },
       };
-      manageUser.broadcast(userId,roomId,messageObject);
+      manageUser.sendMessageToClient(userId, roomId, responseObject);
     }
+
+    if (data.event === "setMessage") {
+      const { userId, roomId } = data.payload;
+
+      const messageObject = {
+        event: "responseChat",
+        payload: {
+          message: data.payload.message,
+          time: data.payload.timeStamp,
+          userId,
+          roomId,
+        },
+      };
+      console.log(messageObject)
+      manageUser.broadcast(userId, roomId, messageObject);
+      //   if()
+      //  console.log(data);
+    }
+
+    // if (data.event === "sendMessage") {
+    //   const messageObject = {
+    //     message: data.payload.message,
+    //     time: data.payload.timeStamp,
+    //     userId: data.payload.userId,
+    //     roomId: data.payload.roomId,
+    //   };
+    //   manageUser.broadcast(userId,roomId,messageObject);
+    // }
   });
   ws.on("close", () => {
     console.log(`connection closed for client ${id}`);

@@ -21,6 +21,10 @@ class Rooms {
             this.removeUser(userId, roomId);
         });
     }
+    sendMessageToClient(userId, roomId, messageObject) {
+        const user = this.getUser(userId, roomId);
+        user.conn.send(JSON.stringify(messageObject));
+    }
     removeUser(userId, roomId) {
         var _a;
         //first get the users array with the user id  and the room id
