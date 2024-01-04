@@ -1,6 +1,6 @@
 Certainly! Below is a sample GitHub README for your chat room project. Feel free to customize it according to your project structure, details, and preferences.
 
-```markdown
+
 # Chat Room
 
 This project is a basic chat room implementation using websockets and the ws library. It serves as an exploration of websockets functionality, providing a simple chat room where users can exchange messages in real-time.
@@ -58,14 +58,3 @@ Follow these steps to get the project up and running on your local machine.
    ```
 
 5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to access the chat room.
-
-## Contributing
-
-If you'd like to contribute to the project, please follow the [Contributing Guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Make sure to replace placeholders like `your-username` with your actual GitHub username and update the URLs accordingly. Additionally, you can add specific sections, badges, or other details based on your project's requirements.
